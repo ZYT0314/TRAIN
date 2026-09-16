@@ -1,54 +1,156 @@
+# TRAIN: Rheumatoid Arthritis Intelligence Network
+
+## Overview
+
+TRAIN is a rheumatology-specific pretrained framework developed for structured biomedical data analysis. The framework integrates large-scale clinical records, molecular multi-omics datasets, and radiology-report-derived phenotypes to support multiple clinically relevant tasks, including joint phenotyping, diagnostic differentiation, and longitudinal rheumatoid arthritis management.
+
+This repository provides the implementation of data preprocessing, model training, multi-omics integration, external validation, cross-disease classification, and model interpretation analyses used in this study.
 
 ---
 
-## 📑 Module Descriptions
+# Repository Structure
 
-### 1. `Data pre-processing/`
-This directory contains comprehensive code for handling missing values and data preprocessing.
-- Implements **multiple imputation** methods for robust missing value estimation.
-- Includes **KNN-based imputation** for local structure-aware missing data filling.
-- Prepares clean, standardized datasets for subsequent modeling workflows.
+## 1. Data pre-process/
 
----
+This directory contains preprocessing pipelines for preparing heterogeneous biomedical datasets before model development.
 
-### 2. `Function/`
-This module provides foundational utilities and baseline model implementations:
-- Generates synthetic datasets based on real-world functions for controlled testing.
-- Contains plotting and visualization code for data distribution and model behavior.
-- Implements fitting capability assessments for both baseline models and the TRAIN model, enabling performance comparisons across different approaches.
+Main functions include:
 
----
+- Data cleaning and normalization.
+- Missing-value handling and imputation strategies.
+- Feature transformation and dataset preparation.
+- Generation of standardized input matrices for subsequent TRAIN model training and evaluation.
 
-### 3. `Multi-omics Fusion/`
-This directory includes pre-training code for models leveraging multi-omics data integration:
-- Implements multi-omics fusion strategies to combine information from different data modalities.
-- Provides pre-training pipelines for models designed to leverage cross-omic relationships.
-- Facilitates the development of more robust and predictive models by integrating complementary biological signals.
+These preprocessing workflows ensure consistent representation across clinical, radiological, and molecular datasets.
 
 ---
 
-### 4. `TRAIN/`
-This directory contains complete pre-training code for single-omics data modalities:
-- Implements the full pre-training pipeline of the TRAIN model for each individual omics type.
-- Supports training workflows optimized for single-omics datasets, including feature engineering and model fitting.
-- Serves as the core implementation of the TRAIN model’s single-modality learning capabilities.
+## 2. Function/
+
+This directory contains general utility functions and benchmarking components used throughout the study.
+
+Main functions include:
+
+- Generation of synthetic datasets for controlled experiments.
+- General model fitting utilities.
+- Visualization functions for model performance assessment.
+- Benchmarking workflows comparing TRAIN with conventional machine-learning approaches.
+
+This module supports methodological evaluation and reproducibility analyses.
 
 ---
 
-### 5. `TRAIN_Validation/`
-This directory provides code for external validation of the TRAIN model’s generalization performance:
-- Uses independent, external datasets to evaluate the model’s performance on unseen data.
-- Implements validation workflows to assess the TRAIN model’s ability to generalize beyond the training set.
-- Includes metrics and visualizations to quantify and report the model’s robustness across different datasets.
+## 3. Multi-omics Fusion/
+
+This directory contains the implementation of multi-omics integration and fusion strategies.
+
+Main functions include:
+
+- Integration of transcriptomic and proteomic information.
+- Construction of multi-modal feature representations.
+- Multi-omics pretraining workflows.
+- Evaluation of complementary biological information from different molecular modalities.
+
+This module enables TRAIN to capture shared representations across multiple molecular layers.
 
 ---
 
-### 6. `TRAIN_main/SHAP/`
-This directory contains code for model interpretability analysis using SHAP:
-- Implements SHAP (SHapley Additive exPlanations) functions to compute feature importance and model behavior.
-- Provides visualization code for generating SHAP summary plots, force plots, and dependency plots.
-- Enables detailed interpretability of the TRAIN model’s predictions, helping to understand the contributions of individual features.
+## 4. TRAIN_Image report/
+
+This directory contains code for radiology-report-based joint phenotype modelling.
+
+Main functions include:
+
+- Processing of structured radiology-derived features.
+- Training and evaluation of inflammatory and degenerative joint phenotype classification models.
+- Geographic external validation across independent radiology centres.
+- Performance evaluation and visualization.
+
+This module supports assessment of TRAIN for imaging-associated clinical phenotyping tasks.
 
 ---
 
-*(Note: The `TRAIN_Follow` module, containing long-term steady-state prediction code for single-omics data, will be added to the repository in subsequent updates.)*
+## 5. TRAIN_classification/
+
+This directory contains classification workflows for clinical diagnostic differentiation tasks.
+
+Main functions include:
+
+- Model training for disease classification.
+- Rheumatic disease differentiation analyses.
+- Prediction workflows using clinical and molecular features.
+- Evaluation using internal and external cohorts.
+
+This module supports diagnostic classification analyses among rheumatological conditions.
+
+---
+
+## 6. TRAIN_cross classification/
+
+This directory contains cross-condition classification analyses evaluating model transferability.
+
+Main functions include:
+
+- Cross-disease prediction workflows.
+- Evaluation of representation transferability across related diseases.
+- Assessment of TRAIN performance under different classification scenarios.
+
+This module investigates whether pretrained representations can support broader rheumatological discrimination tasks.
+
+---
+
+## 7. TRAIN_Validation/
+
+This directory contains external validation workflows for assessing TRAIN generalizability.
+
+Main functions include:
+
+- Application of pretrained models to independent cohorts.
+- Evaluation on unseen datasets.
+- Calculation of performance metrics.
+- Generation of validation results and visualization.
+
+This module supports assessment of model robustness and transportability across institutions.
+
+---
+
+## 8. TRAIN_SHAP/
+
+This directory contains model interpretation analyses based on SHAP (SHapley Additive exPlanations).
+
+Main functions include:
+
+- Calculation of feature contribution scores.
+- Identification of important predictive variables.
+- Generation of SHAP summary plots and feature interpretation analyses.
+- Exploration of model decision patterns.
+
+This module provides interpretability analysis for understanding clinical and molecular contributors to TRAIN predictions.
+
+---
+
+# Reproducibility
+
+All scripts required to reproduce the main analyses reported in the manuscript are provided in this repository.
+
+The repository includes:
+
+- Data preprocessing workflows.
+- TRAIN model implementation.
+- Multi-omics integration pipelines.
+- Clinical classification analyses.
+- External validation procedures.
+- Model interpretation analyses.
+
+Due to restrictions related to human genetic resources, clinical data governance, and institutional regulations, raw clinical records and in-house molecular datasets are not publicly released.
+
+Requests for controlled access to eligible datasets should be directed to the corresponding authors and will be evaluated according to institutional data-sharing procedures.
+
+---
+
+# Software Requirements
+
+The code was developed using Python-based machine-learning workflows.
+
+Required packages and environment configurations are described within individual modules.
+
